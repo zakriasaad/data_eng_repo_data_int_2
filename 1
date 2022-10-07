@@ -1,0 +1,13 @@
+DROP TABLE IF EXISTS territory_region;
+
+CREATE TEMP TABLE territory_region AS
+SELECT t.TerritoryDescription, t.TerritoryID, r.RegionDescription 
+FROM Territories t  
+JOIN Regions r ON r.RegionID = t.RegionID; 
+
+SELECT *
+FROM territory_region;
+
+SELECT territory_region.RegionDescription, territory_region.TerritoryDescription, et.EmployeeID  
+FROM EmployeeTerritories et 
+JOIN territory_region ON territory_region.TerritoryID = et.TerritoryID;
