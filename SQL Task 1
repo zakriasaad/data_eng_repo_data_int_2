@@ -1,1 +1,15 @@
+DROP TABLE IF EXISTS customers_orders;
 
+CREATE TEMP TABLE customers_orders AS
+SELECT c.CompanyName, COUNT(o.OrderID) AS Num_Orders, c.City 
+FROM Customers c  
+JOIN Orders o  ON o.ShipCity = c.City AND o.CustomerID = c.CustomerID
+GROUP BY c.CompanyName; 
+
+SELECT *
+FROM customers_orders;
+
+SELECT s.CompanyName, co.CompanyName, co.Num_Orders 
+FROM Suppliers s 
+JOIN customers_orders co ON co.City = s.City
+GROUP BY s.CompanyName;
