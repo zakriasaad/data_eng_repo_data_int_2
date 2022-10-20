@@ -1,0 +1,32 @@
+SELECT c.CompanyName, c.City ,c.Country , o.OrderDate , o.RequiredDate 
+FROM Orders o  
+JOIN Customers c 
+ON O.customerid = c.CustomerID 
+ORDER BY 1
+
+-- I developed a query to check for the information of companies tha placed orders where they are based [city and country] and order [Newest to oldest] of their orders. 
+-- The tables needed for this query was the orders table and the customers.
+
+
+SELECT o.OrderID, o.OrderDate, p.ProductName, od.UnitPrice, od.Quantity, (od.UnitPrice * od.Quantity) product_cost, od.Discount
+FROM [Order Details] od
+JOIN Products p 
+ON od.ProductID = p.ProductID
+JOIN orders o
+ON o.OrderID = od.OrderID
+WHERE MONTH(o.OrderDate) = 03 AND YEAR(o.OrderDate) = 1997
+ORDER BY product_cost desc, od.Discount desc
+
+
+--This query was developed to check for the customers the spent the most in the month of march in !997 by first calculating the product cost.
+-- The tables utilized for the query are: Order Details table, Orders table and the Product table.
+
+
+SELECT o.OrderID, o.ShipName, CONCAT(e.FirstName,' ', e.LastName) full_name
+FROM Orders o
+JOIN Employees e
+ON o.EmployeeID = e.EmployeeID
+ORDER BY e.LastName desc, e.FirstName, o.OrderID
+
+-- For each order I wanted to display the name of the ship it was sent on and the fullname of the employees who are responsible for each order.
+-- The tables used for this query includes the Orders table and employee
